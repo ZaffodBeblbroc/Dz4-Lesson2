@@ -94,11 +94,7 @@ const getPositiveIntegers = (array) => {
  */
 // functions return index of element in array
 const getElementIndex = (array, value) => {
-  for (let i = 0; i < array.length; i++) {
-    if (array[i] === value) {
-      return i;
-    }
-  }
+  return array.indexOf (value, 0);
 };
 
 /**
@@ -108,9 +104,14 @@ const getElementIndex = (array, value) => {
  */
 // function returns item from array or undefined if item is not found
 const getItem = (array, value) => {
-  // write your code here
+  let result = array.find(function (item) {
+    if (item === value) {
+      return true;
+    }
+  });
+  return result;
 };
-
+ 
 /**
  * @param {string[]} array
  * @param {string} word
@@ -118,7 +119,19 @@ const getItem = (array, value) => {
  */
 // function returns true if word is in every string in array and false if is not
 const isWordInEveryArrayString = (array, word) => {
-  // write your code here
+  let result = 0;
+  array.forEach(function(item) {
+    if (item.includes(word)) {
+      result++;
+    }
+  }) 
+
+  if (result === array.length && result !== 0) {
+    result = true;
+  } else {
+    result = false;
+  }
+  return result;
 };
 
 /**
@@ -127,9 +140,11 @@ const isWordInEveryArrayString = (array, word) => {
  */
 // function returns true if any number in array is negative
 const isNegativeNumbersInArray = (array) => {
-  // write your code here
-};
-
+  let result = array.some(function(item) {
+    return item < 0;
+  });
+  return result;
+}
 /**
  * @param {number[]} array
  * @param {number} startPosition
@@ -138,7 +153,7 @@ const isNegativeNumbersInArray = (array) => {
  */
 // function returns part of array from start to end (including end) positions
 const returnArrayPart = (array, startPosition, endPosition) => {
-  // write your code here
+  return array.slice([startPosition], [endPosition + 1]);
 };
 
 
